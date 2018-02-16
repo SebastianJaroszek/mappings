@@ -1,4 +1,4 @@
-package pl.dominisz;
+package pl.sebastian;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,21 +12,11 @@ public class ExactMatchingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String requestUri = req.getRequestURI();
-        String requestUrl = req.getRequestURL().toString();
-        String contextPath = req.getContextPath();
-        String pathInfo = req.getPathInfo();
-        String queryString = req.getQueryString();
-
         resp.setContentType("text/html");
         resp.setCharacterEncoding("utf-8");
+
         PrintWriter out = resp.getWriter();
-        out.println("<h1>Informacje o servlecie i requeście</h1>");
-        out.println("requestURI = " + requestUri);
-        out.println("<br>requestURL = " + requestUrl);
-        out.println("<br>contextPath = " + contextPath);
-        out.println("<br>pathInfo = " + pathInfo);
-        out.println("<br>queryString = " + queryString);
+        out.println(RequestToHtmlConverter.convert(req));
     }
 
 }

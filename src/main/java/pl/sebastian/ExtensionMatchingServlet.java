@@ -1,6 +1,5 @@
 package pl.sebastian;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +30,8 @@ public class ExtensionMatchingServlet extends HttpServlet {
         int lastSlash = requestUri.lastIndexOf("/");
         String filename = requestUri.substring(lastSlash + 1);
         out.println("Streaming MP4 file: " + filename);
+
+        out.println(RequestToHtmlConverter.convert(req));
     }
 
     private void streamMP3(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -38,5 +39,6 @@ public class ExtensionMatchingServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         PrintWriter out = resp.getWriter();
         out.println("Jestem w streamMP3");
+        out.println(RequestToHtmlConverter.convert(req));
     }
 }
